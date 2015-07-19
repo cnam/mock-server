@@ -4,7 +4,8 @@ use nginx;
 use strict;
 use warnings;
 use JSON;
-use Data::Dumper;
+use File::Path;
+use File::Basename;
 
 sub handler {
     my $r = shift;
@@ -24,8 +25,11 @@ sub post {
     my $encoded_data = decode_json($json);
     my $filename = $encoded_data->{request}->{uri};
     my $data = $encoded_data->{response}->{body};
+    my $dir = dirname($filename);
 
     $r->send_http_header("application/json");
+
+    mkpath('/tmp/'.$dir);
 
     unless(open FILE, '>/tmp/'.$filename) {
        die "Unable to create $filename";
