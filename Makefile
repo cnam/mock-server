@@ -7,10 +7,10 @@ start:
 		cnam/mock-server
 
 test:
-	curl $(DOCKER_HOST_IP)/write -XPOST -d '{"request":{"uri":"test/test"}, "response": {"body": {"json":"test-data"}}}'
-	curl $(DOCKER_HOST_IP)/write -XPOST -d '{"request":{"uri":"test/new_file"}, "response": {"body": {"json":"new file"}}}'
-	curl $(DOCKER_HOST_IP)/test/new_file
-	curl $(DOCKER_HOST_IP)/test/test
+	curl $(DOCKER_HOST_IP)/write -XPOST -d '{"request":{"uri":"api/v3/projects"}, "response": {"body": {"json":"test-data"}}}'
+	curl $(DOCKER_HOST_IP)/write -XPOST -d '{"request":{"uri":"api/v3/projects/8"}, "response": {"body": {"json":"new file"}}}'
+	curl $(DOCKER_HOST_IP)/api/v3/projects
+	curl $(DOCKER_HOST_IP)/api/v3/projects/8
 
 clean:
 	-docker rm -f mock-server

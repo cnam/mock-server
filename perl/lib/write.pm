@@ -29,9 +29,11 @@ sub post {
 
     $r->send_http_header("application/json");
 
-    mkpath('/tmp/'.$dir);
+    if ( !-d $dir ) {
+       mkpath('/tmp/'.$dir);
+    }
 
-    unless(open FILE, '>/tmp/'.$filename) {
+    unless(open FILE, '>/tmp/'.$filename.'.json') {
        die "Unable to create $filename";
     }
 

@@ -10,8 +10,8 @@ sub handler {
     $r->send_http_header("application/json");
     return OK if $r->header_only;
 
-    unless(open FILE, '/tmp/'.$r->uri) {
-        die "Unable to find mock $r->uri";
+    unless(open FILE, '/tmp/'.$r->uri.'.json') {
+        die "File not exists ".$r->uri;
     }
 
     while(my $line = <FILE>) {
