@@ -36,4 +36,7 @@ RUN apk update && \
     rm -rf /var/cache/apk/* && \
     cd / && rm -rf nginx-*
  
+COPY ./nginx /etc/nginx
+COPY ./perl /usr/local/nginx/perl
+
 CMD ["nginx","-g", "daemon off;"] 
