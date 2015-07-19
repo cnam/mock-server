@@ -3,11 +3,7 @@
 ### Running
 
 ```bash
-docker run -d \
-	-v `pwd`/test/usr/local/nginx/perl/lib:/usr/local/nginx/perl/lib \
-	-v `pwd`/test/nginx:/etc/nginx \
-	-p 80:80 \
-	cnam/mock-server
+docker run -d -p 80:80 cnam/mock-server
 ```
 
 ### Usage

@@ -1,8 +1,6 @@
 start:
 	@docker run -d \
-	    --name mock-server \
-		-v $(CURDIR)/test/usr/local/nginx/perl/lib:/usr/local/nginx/perl/lib \
-		-v $(CURDIR)/test/nginx:/etc/nginx \
+		--name mock-server \
 		-p 80:80 \
 		cnam/mock-server
 
