@@ -6,13 +6,12 @@ use warnings;
 
 sub handler {
     my $r = shift;
-    my $filename = '/tmp/test.json';
 
     $r->send_http_header("application/json");
     return OK if $r->header_only;
 
-    unless(open FILE, $filename) {
-     die "Unable to open $filename";
+    unless(open FILE, '/tmp/'.$r->uri) {
+        die "Unable to find mock $r->uri";
     }
 
     while(my $line = <FILE>) {

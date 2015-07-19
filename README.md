@@ -11,7 +11,7 @@ docker run -d -p 80:80 cnam/mock-server
 Write new mock
 
 ```bash
-curl 127.0.0.1/write -XPOST -d '{"json":"test-mock"}'
+curl 127.0.0.1/write -XPOST -d '{"request":{"uri":"test"}, "response": {"body": {"json":"test-data"}}}'
 ```
 
 Read mock from application
@@ -20,14 +20,14 @@ Read mock from application
 Request
 
 ```bash
-curl 127.0.0.1/read
+curl 127.0.0.1/test
 ```
 
 Response
 
 ```json
 {
-    "json": "test-mock"
+    "json": "test-data"
 }
 ```
 

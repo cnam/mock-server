@@ -2,7 +2,9 @@ package write;
 
 use nginx;
 use strict;
-use warnings; 
+use warnings;
+use JSON;
+use Data::Dumper;
 
 sub handler {
     my $r = shift;
@@ -18,15 +20,18 @@ sub handler {
 
 sub post {
     my $r = shift;
-    my $filename = '/tmp/test.json';
+    my $json = $r->request_body;
+    my $encoded_data = decode_json($json);
+    my $filename = $encoded_data->{request}->{uri};
+    my $data = $encoded_data->{response}->{body};
 
     $r->send_http_header("application/json");
 
-    unless(open FILE, '>'.$filename) {
+    unless(open FILE, '>/tmp/'.$filename) {
        die "Unable to create $filename";
     }
 
-    print FILE $r->request_body;
+    print FILE encode_json $data;
 
     close FILE;
 

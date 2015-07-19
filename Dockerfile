@@ -3,6 +3,7 @@ FROM alpine:3.2
 RUN apk update && \
     apk add make \
         perl \
+        perl-json \
         perl-dev \
         wget \
         gcc \
